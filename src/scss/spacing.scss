@@ -1,0 +1,10 @@
+$spacing_base: 5px;
+
+@for $i from 1 through 5 {
+	.mt-#{$i} {
+		margin-top: $i * $spacing_base;
+	}
+	.p-#{$i} {
+		padding: $i * $spacing_base;
+	}
+}

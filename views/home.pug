@@ -1,0 +1,49 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		//- link(rel="stylesheet" href="/css/app.css")
+		title Online Clipboard
+	body
+		header 
+			.container 
+				h1 Online Clipboard 
+		main 
+			article.container#howto 
+				h3 How to use?
+				p Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque ex eveniet corporis nam, obcaecati tempore mollitia quam accusantium recusandae voluptatem, facilis laborum id nisi minus odit? Vel error culpa saepe. 
+				p.d-none.d-sm-auto Odio possimus illum nam impedit expedita tempore sit hic adipisci maxime magni odit quasi consequatur, minima vero corporis esse laudantium quis neque animi earum. Accusantium illo possimus inventore quaerat ipsa.
+
+			#app
+				div.d-flex.p-3.mt-4.row-sm
+					.col-sm-2
+						.action
+							form#submit-form(action="" method="post")
+								.form-group 
+									label(for="subject") Paste your text here
+									input#subject(type="text" name="text" required).form-control
+									button(type="submit").mt-1 Send
+
+					.col-sm-2
+						.action
+							form#retrieve-form(action="" method="post")
+								.form-group
+									label(for="object") Enter your retrieval code
+									input#object(type="text" name="code" required).form-control
+									button(type="submit").mt-1 Retrieve
+
+				.contact.d-flex.justify-content-between
+					a(href="https://github.com/peteradeojo" target="_blank" rel="noopener noreferrer")
+						img(src="/img/akar-icons_github-fill.svg" alt="Github" srcset="").d-none.d-sm-auto
+						img(src="/img/akar-icons_github-fill-color.svg" alt="Github" srcset="").d-sm-none
+					a(href="https://www.linkedin.com/in/peter-ade-ojo-0a52581aa" target="_blank" rel="noopener noreferrer")
+						img(src="/img/akar-icons_linkedin-v1-fill.svg" alt="LinkedIn" srcset="").d-none.d-sm-auto
+						img(src="/img/akar-icons_linkedin-v1-fill-color.svg" alt="LinkedIn" srcset="").d-sm-none
+					a(href="https://twitter.com/_peterstpatrick" target="_blank" rel="noopener noreferrer")
+						img(src="/img/akar-icons_twitter-fill.svg" alt="Twitter" srcset="").d-none.d-sm-auto
+						img(src="/img/akar-icons_twitter-fill-color.svg" alt="Twitter" srcset="").d-sm-none
+
+
+		script(src="/js/app.js") 

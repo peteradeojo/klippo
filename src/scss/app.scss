@@ -1,0 +1,83 @@
+@use 'base.scss';
+@use 'forms.scss';
+@use 'responsive.scss';
+@use 'spacing.scss';
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	font: 14px/1.5 Arial, Helvetica, sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	padding: 16px;
+	margin: auto;
+	width: 98%;
+}
+
+header {
+	height: 120px;
+	h1 {
+		text-align: center;
+		font-size: 48px;
+		color: #fff;
+		@media (max-width: 430px) {
+			font-size: 30px;
+		}
+	}
+	background: #5231b0;
+	display: flex;
+	justify-items: center;
+	align-items: center;
+}
+
+main {
+	display: flex;
+	flex-flow: column;
+	flex: 1;
+}
+
+#howto {
+	min-height: 150px;
+	@media (max-width: 430px) {
+		padding: 60px auto;
+		min-height: 200px;
+	}
+}
+
+#app {
+	background: #56146d;
+	color: #fff;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.form-control {
+	background: #e8e8e8;
+	border-radius: 33px;
+}
+
+.contact {
+	width: 70%;
+	margin: 20px auto;
+	border-radius: 1px solid;
+	img {
+		width: 40px;
+	}
+
+	@media (max-width: 430px){
+		& {
+			margin: 0;
+			padding: 10px 20px;
+			width: 100%;
+			background-color: #fff;
+		}
+	}
+}

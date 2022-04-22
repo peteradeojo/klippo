@@ -1,0 +1,49 @@
+{
+  "name": "vanilla",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "cross-env DEBUG=app,app:* nodemon server.js",
+    "style": "sass -w src/scss/app.scss public/css/app.css",
+    "clean": "rm public/js/app.js",
+    "build-dev": "webpack --watch --mode development",
+    "build-prod": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.1",
+    "pug": "^3.0.2",
+    "random-js": "^2.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "dotenv": "^16.0.0",
+    "morgan": "^1.10.0",
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.15",
+    "sass": "^1.50.1",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "nodemonConfig": {
+    "delay": 1200,
+    "ignore": [
+      "package.json",
+      "**/public/**",
+      "**/src/**"
+    ]
+  },
+  "events": {
+    "restart": "clear"
+  }
+}
