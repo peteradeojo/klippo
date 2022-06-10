@@ -110,7 +110,7 @@ submitForm.addEventListener('submit', async function (e) {
 		return undefined;
 	}
 
-	displayFile(data?.file);
+	displayFile();
 	retrieveForm.code.value = data.code;
 	navigator.clipboard.writeText(data.code);
 	notify(submitForm, 'The text has been submitted', 'success');
