@@ -40,9 +40,6 @@
 		width: math.div(100%, $i);
 	}
 }
-// [class*='col-'] {
-// 	margin: auto;
-// }
 
 @media screen and (max-width: 430px) {
 	[class*='col-sm-'] {
