@@ -50,7 +50,6 @@ const EntryController = {
 			const entry = new Entry({ code, text });
 			const filetag = v4();
 
-
 			if (req.files) {
 				const file = req.files.file;
 				const mediaTypes = [
@@ -87,7 +86,11 @@ const EntryController = {
 				await file.mv(filePath);
 				// debug('File moved. Uploading to cloudinary...');
 
-				const { url } = await cloudinary.v2.uploader.upload(filePath);
+				const { url } = await cloudinary.v2.uploader.upload(filePath, {
+					api_key: process.env.CLOUDINARY_API_KEY,
+					api_secret: process.env.CLOUDINARY_API_SECRET,
+					cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+				});
 
 				entry.file = {
 					name: file.name,
