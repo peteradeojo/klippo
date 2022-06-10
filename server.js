@@ -12,8 +12,6 @@ if (app.get('env') !== 'production') {
 	app.use(require('morgan')('dev'));
 }
 
-console.log(process.env.CLOUDINARY_API_KEY);
-
 (async () => {
 	try {
 		const {
