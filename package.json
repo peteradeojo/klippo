@@ -10,17 +10,20 @@
     "style": "sass -w src/scss/app.scss public/css/app.css",
     "clean": "rm public/js/app.js",
     "build-dev": "webpack --watch --mode development",
-    "build-prod": "webpack --mode production"
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cloudinary": "^1.30.0",
     "debug": "^4.3.4",
     "express": "^4.17.3",
+    "express-fileupload": "^1.4.0",
     "mongoose": "^6.3.1",
     "pug": "^3.0.2",
-    "random-js": "^2.1.0"
+    "random-js": "^2.1.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

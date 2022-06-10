@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const debug = require('debug')('app:server');
+const fileUpload = require('express-fileupload');
 
 const app = express();
 
@@ -27,8 +28,15 @@ app.set('view engine', 'pug');
 
 app.disable('x-powered-by');
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(
+	fileUpload({
+		limits: { fileSize: 20 * 1000 * 1000 },
+		useTempFiles: true,
+		createParentPath: true,
+	})
+);
 
 app.use(express.static(path.join(__dirname, 'public')));
 

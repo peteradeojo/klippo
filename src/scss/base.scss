@@ -3,3 +3,35 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+
+.text-light {
+	color: #fff;
+}
+
+.alert {
+	padding: 8px;
+	border: 2px solid;
+	border-radius: 4px;
+	margin: 8px 0;
+	// display: flex;
+	position: relative;
+	&.alert-danger {
+		background-color: #f44336;
+		color: #fff;
+	}
+	&.alert-success{
+		background-color: blue;
+		color: #fff;
+	}
+	button.close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 8px;
+		border: none;
+		background-color: transparent;
+		color: #fff;
+		font-size: 1.5em;
+		cursor: pointer;
+	}
+}

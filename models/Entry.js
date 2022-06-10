@@ -2,6 +2,21 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
+const FileSchema = new Schema({
+	name: {
+		type: String,
+		required: true,
+	},
+	link: {
+		type: String,
+		required: true,
+	},
+	fileType: String,
+	size: {
+		type: Number,
+	},
+});
+
 const EntrySchema = new Schema({
 	dateAdded: {
 		type: Date,
@@ -15,6 +30,10 @@ const EntrySchema = new Schema({
 		type: Number,
 		unique: true,
 		required: true,
+	},
+	file: {
+		type: FileSchema,
+		required: false,
 	},
 });
 

@@ -26,7 +26,13 @@ html(lang="en")
 								.form-group 
 									label(for="subject") Paste your text here
 									input#subject(type="text" name="text" required).form-control
+								.form-group
+									label(for="file").btn.btn-green Select a File 
+									input#file(type="file", name="file" style="display:none")
+									div.mt-1#file-name
+								.form-group
 									button(type="submit").mt-1 Send
+								#display
 
 					.col-sm-2
 						.action
@@ -35,6 +41,14 @@ html(lang="en")
 									label(for="object") Enter your retrieval code
 									input#object(type="text" name="code" required).form-control
 									button(type="submit").mt-1 Retrieve
+								#display
+					
+					.col-sm-12 
+						.result 
+							#retrieved-text 
+							#retrieved-file
+								.file-icon 
+								.file-link
 
 				.contact.d-flex.justify-content-between
 					a(href="https://github.com/peteradeojo" target="_blank" rel="noopener noreferrer")

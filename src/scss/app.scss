@@ -2,6 +2,7 @@
 @use 'forms.scss';
 @use 'responsive.scss';
 @use 'spacing.scss';
+@use 'components/button.scss';
 
 html,
 body {
@@ -72,7 +73,7 @@ main {
 		width: 40px;
 	}
 
-	@media (max-width: 430px){
+	@media (max-width: 430px) {
 		& {
 			margin: 0;
 			padding: 10px 20px;
