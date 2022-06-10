@@ -12,3 +12,6 @@ Created with
 - MongoDB Cloud
 - Heroku
 - [random-js](https://npmjs.com/random-js)
+
+## Update
+You can now share media files
