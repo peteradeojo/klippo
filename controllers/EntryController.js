@@ -9,10 +9,23 @@ const Entry = require('../models/Entry');
 const EntryController = {
 	getAllEntries: async (req, res) => {
 		try {
-			const entries = await Entry.find();
-			res.json(entries);
+			let { page, count } = req.query;
+			page ||= 1;
+			count ||= 10;
+
+			const entries = await Entry.find()
+				.skip(count * (page - 1))
+				.limit(count);
+
+			const data = {
+				previous:
+					page > 1 ? `/api/?page=${page - 1}&count=${count}` : null,
+				data: entries,
+				next: `/api/?page=${parseInt(page) + 1}&count=${count}`,
+			};
+			res.json(data);
 		} catch (error) {
-			res.status(500).send(error);
+			res.status(500).json({ error: error.message || error.stack });
 		}
 	},
 
