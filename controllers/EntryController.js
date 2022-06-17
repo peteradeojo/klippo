@@ -18,8 +18,7 @@ const EntryController = {
 				.limit(count);
 
 			const data = {
-				previous:
-					page > 1 ? `/api/?page=${page - 1}&count=${count}` : null,
+				previous: page > 1 ? `/api/?page=${page - 1}&count=${count}` : null,
 				data: entries,
 				next: `/api/?page=${parseInt(page) + 1}&count=${count}`,
 			};
@@ -122,7 +121,7 @@ const EntryController = {
 			});
 		} catch (error) {
 			debug(error);
-			return res.status(500).json({ message: error });
+			return res.status(500).json({ error: error.message });
 		}
 	},
 
