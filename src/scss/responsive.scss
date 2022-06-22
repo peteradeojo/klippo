@@ -1,49 +1,17 @@
-@use 'sass:math';
-
 .d-flex {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	width: 100%;
-	.column {
-		flex-direction: column;
-	}
-	@media (max-width: 480px) {
-		&.row-sm {
-			flex-direction: column;
-		}
+
+	.col-sm-2 {
+		width: 100%;
 	}
 }
 
 .d-none {
-	display: none;
+	display: flex;
 }
 
-@media (min-width: 430px) {
-	.d-sm-auto {
-		display: initial;
-	}
-	.d-sm-none {
-		display: none;
-	}
-}
-
-.justify-content-between {
-	justify-content: space-between;
-}
-
-@for $i from 1 through 12 {
-	.col-#{$i} {
-		width: math.div(100%, $i);
-	}
-	.col-sm-#{$i} {
-		width: math.div(100%, $i);
-	}
-}
-
-@media screen and (max-width: 430px) {
-	[class*='col-sm-'] {
-		// margin: auto;
-		width: 100%;
+@media screen and (max-width: 1024px) {
+	.d-flex {
+		flex-direction: column;
 	}
 }

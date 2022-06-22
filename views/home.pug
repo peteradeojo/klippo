@@ -4,12 +4,12 @@ html(lang="en")
 		meta(charset="UTF-8")
 		meta(http-equiv="X-UA-Compatible" content="IE=edge")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
-		//- link(rel="stylesheet" href="/css/app.css")
+		//- link(rel="stylesheet" href="/src/scss/app.css")
 		title Online Clipboard
 	body
 		header 
 			.container 
-				h1 Online Clipboard 
+				h1 Klippo Online Clipboard
 		main 
 			article.container#howto 
 				h3 How to use?
@@ -22,13 +22,13 @@ html(lang="en")
 					a(href="https://github.com/peteradeojo/klippo/blob/main/terms.md") Terms & Conditions
 
 			#app
-				div.d-flex.p-3.mt-4.row-sm
+				div.d-flex
 					.col-sm-2
 						.action
 							form#submit-form(action="" method="post")
 								.form-group 
 									label(for="subject") Paste your text here
-									input#subject(type="text" name="text" required).form-control
+									textarea#subject(name="text", cols="30", rows="10" type="text" required).form-control
 								.form-group
 									label(for="file").btn.btn-green Select a File 
 									input#file(type="file", name="file" style="display:none")
@@ -52,16 +52,16 @@ html(lang="en")
 					.file-icon 
 					.file-link
 
-				.contact.d-flex.justify-content-between
+				.contact
 					a(href="https://github.com/peteradeojo" target="_blank" rel="noopener noreferrer")
-						img(src="/img/akar-icons_github-fill.svg" alt="Github" srcset="").d-none.d-sm-auto
-						img(src="/img/akar-icons_github-fill-color.svg" alt="Github" srcset="").d-sm-none
+						img(src="/img/github.svg" alt="Github" srcset="").contact_icon
+						
 					a(href="https://www.linkedin.com/in/peter-ade-ojo-0a52581aa" target="_blank" rel="noopener noreferrer")
-						img(src="/img/akar-icons_linkedin-v1-fill.svg" alt="LinkedIn" srcset="").d-none.d-sm-auto
-						img(src="/img/akar-icons_linkedin-v1-fill-color.svg" alt="LinkedIn" srcset="").d-sm-none
+						img(src="/img/linkedin.svg" alt="LinkedIn" srcset="").contact_icon
+						
 					a(href="https://twitter.com/shouldbepete" target="_blank" rel="noopener noreferrer")
-						img(src="/img/akar-icons_twitter-fill.svg" alt="Twitter" srcset="").d-none.d-sm-auto
-						img(src="/img/akar-icons_twitter-fill-color.svg" alt="Twitter" srcset="").d-sm-none
+						img(src="/img/twitter.svg" alt="Twitter" srcset="").contact_icon
+						
 
 
 		script(src="/js/app.js") 
