@@ -6,6 +6,9 @@ html(lang="en")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		//- link(rel="stylesheet" href="/src/scss/app.css")
 		title Online Clipboard
+		if user
+			script.
+				const user = "#{user.username}"
 	body
 		header 
 			.container 
@@ -48,7 +51,7 @@ html(lang="en")
 					
 					 
 				#retrieved-text 
-				#retrieved-file.p-3
+				#retrieved-file.p-1.hide
 					.file-icon 
 					.file-link
 

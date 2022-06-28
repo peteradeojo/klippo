@@ -29,16 +29,29 @@ const EntryController = {
 	},
 
 	getEntry: async (req, res) => {
+		// return res.status(500).send('An error');
 		try {
+			let projection = 'id text -file.link ';
+			// if (!req.user) {
+			// 	projection += '-file.link';
+			// }
+
+			// debug(projection);
 			const { code } = req.params;
-			// debug(code);
+			// const entry = await Entry.findOne({ code }, projection);
+
 			const entry = await Entry.findOne({ code });
 			if (!entry) {
 				return res.status(404).json({ message: 'Not found' });
 			}
-			res.json(entry);
+
+			if (!req.user) {
+				entry.file.link = undefined;
+			}
+
+			return res.json(entry);
 		} catch (error) {
-			res.status(500).send(error);
+			return res.status(500).send(error);
 		}
 	},
 
@@ -95,10 +108,13 @@ const EntryController = {
 					'../uploads/',
 					filetag + path.extname(file.name)
 				);
+
+				debug('Temp name:', file.tempFilePath);
 				await file.mv(filePath);
 				// debug('File moved. Uploading to cloudinary...');
 
 				const { url } = await cloudinary.v2.uploader.upload(filePath, {
+					folder: 'klippo-uploads',
 					api_key: process.env.CLOUDINARY_API_KEY,
 					api_secret: process.env.CLOUDINARY_API_SECRET,
 					cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

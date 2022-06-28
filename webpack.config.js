@@ -2,10 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 
 const config = {
-	entry: './src/js/app.js',
+	entry: { app: './src/js/app.js', index: './src/js/index.js' },
 	output: {
 		path: path.resolve(__dirname, 'public/js'),
-		filename: 'app.js',
+		filename: '[name].js',
 	},
 	module: {
 		rules: [

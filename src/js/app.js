@@ -1,17 +1,18 @@
 import '../scss/app.scss';
 
-const notify = (elem, message, level = 'danger') => {
-	// alert(message);
-	elem.querySelector('#display').innerHTML = `
-		<div class="alert alert-${level} alert-dismissible fade show" role="alert">
-			${message}
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="this.parentElement.remove();">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	`;
-	// console.log(message);
-};
+import { makeRequest, notify } from './util';
+
+// const notify = (elem, message, level = 'danger') => {
+// 	// alert(message);
+// 	elem.querySelector('#display').innerHTML = `
+// 		<div class="alert alert-${level} alert-dismissible fade show" role="alert">
+// 			${message}
+// 			<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="this.parentElement.remove();">
+// 				<span aria-hidden="true">&times;</span>
+// 			</button>
+// 		</div>
+// 	`;
+// };
 
 const submitContent = async (form) => {
 	submitForm.querySelector('button').setAttribute('disabled', 'disabled');
@@ -72,7 +73,8 @@ const submitForm = document.querySelector('#submit-form');
 const retrieveForm = document.querySelector('#retrieve-form');
 // document.getElementById('submit')
 
-fileInput.addEventListener('change', function (e) {
+fileInput?.addEventListener('change', function (e) {
+	console.log(e.target.files[0]);
 	const fileName = e.target.files[0].name;
 	const fileSize = e.target.files[0].size;
 
@@ -85,49 +87,81 @@ fileInput.addEventListener('change', function (e) {
 
 const displayFile = (file, text) => {
 	const displayArea = document.querySelector('#retrieved-file');
+	displayArea.classList.remove('hide');
 	if (!file) {
-		displayArea.querySelector('.file-link').innerHTML = '';
+		displayArea.querySelector(
+			'.file-link'
+		).innerHTML = `<a href='/login'>This code contains a file. Login to Retrieve Files</a>`;
 		return;
 	}
 
 	displayArea.querySelector('.file-link').innerHTML = `
-		<h4>${text} [${file.name}] - ${file.size / 1000} KB</h4>
+		<h4>${text} [${file?.name}] - ${file?.size / 1000} KB</h4>
 		<p class='mt-1'><a href='${
-			file.link
+			file?.link
 		}' class='text-light'>Click to Download</a></p>
 	`;
 };
 
 submitForm.addEventListener('submit', async function (e) {
 	e.preventDefault();
+	const formData = new FormData(this);
 
-	const text = this.text.value;
-	let { data, error } = await submitContent(
-		document.querySelector('#submit-form')
-	);
-	// console.log(code);
-	if (!data?.code) {
-		return undefined;
+	try {
+		const { data, error } = await makeRequest({
+			url: '/api/',
+			method: 'POST',
+			data: formData,
+		});
+
+		if (data?.code) {
+			retrieveForm.code.value = data?.code;
+			navigator.clipboard.writeText(data.code);
+			notify(submitForm.querySelector('#display'), 'Success', 'success');
+		} else {
+			notify(submitForm.querySelector('#display'), error, 'danger');
+		}
+	} catch (err) {
+		console.error(err);
+		notify(submitForm.querySelector('#display'), err, 'danger');
 	}
-
-	displayFile();
-	retrieveForm.code.value = data.code;
-	navigator.clipboard.writeText(data.code);
-	notify(submitForm, 'The text has been submitted', 'success');
+	// console.log(data, error);
 });
 
 retrieveForm.addEventListener('submit', async function (e) {
 	e.preventDefault();
 
 	try {
-		const code = this.code.value;
-		let { text, file } = await retrieveText(code);
-		submitForm.text.value = text;
-		displayFile(file, text);
-		navigator.clipboard.writeText(text);
+		// const code = this.code.value;
+		// let { text, file } = await retrieveText(code);
+		// submitForm.text.value = text;
+		// displayFile(file, text);
+		// navigator.clipboard.writeText(text);
 
-		notify(retrieveForm, 'The data has been retrieved', 'success');
+		// notify(retrieveForm, 'The data has been retrieved', 'success');
+
+		const code = this.code.value;
+
+		const { data, error } = await makeRequest({
+			url: '/api/' + code,
+			method: 'get',
+		});
+
+		if (error) {
+			console.log(error);
+			throw error.message || error;
+			return;
+		}
+
+		if (data?.file) {
+			displayFile(undefined, data.text);
+		}
+
+		navigator.clipboard.writeText(data.text);
+		notify(retrieveForm.querySelector('#display'), 'Success', 'success');
+		submitForm.text.value = data.text;
 	} catch (error) {
-		notify(retrieveForm, error);
+		console.error(error);
+		notify(retrieveForm.querySelector('#display'), error, 'danger');
 	}
 });
