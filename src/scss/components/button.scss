@@ -1,6 +1,6 @@
 @use 'sass:list';
 
-$colors: 'green', 'blue', 'red';
+$darkColors: 'green', 'blue', 'red', 'black', 'yellow';
 
 .btn {
 	// padding: ;
@@ -15,7 +15,7 @@ $colors: 'green', 'blue', 'red';
 	box-shadow: none;
 }
 
-@each $color in $colors {
+@each $color in $darkColors {
 	.btn-#{$color} {
 		background: #{$color};
 		color: #fff;

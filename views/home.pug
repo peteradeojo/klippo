@@ -33,9 +33,11 @@ html(lang="en")
 									label(for="subject") Paste your text here
 									textarea#subject(name="text", cols="30", rows="10" type="text" required).form-control
 								.form-group
-									label(for="file").btn.btn-green Select a File 
-									input#file(type="file", name="file" style="display:none")
-									div.mt-1#file-name
+									if !user
+										a.btn.btn-blue(href="/login") Login to Send Files
+									//- label(for="file").btn.btn-green Select a File 
+									//- input#file(type="file", name="file" style="display:none")
+									//- div.mt-1#file-name
 								.form-group
 									button(type="submit").mt-1 Send
 								#display

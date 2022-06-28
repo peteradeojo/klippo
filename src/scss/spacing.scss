@@ -4,6 +4,17 @@ $spacing_base: 5px;
 	.mt-#{$i} {
 		margin-top: $i * $spacing_base;
 	}
+	.mb-#{$i} {
+		margin-bottom: $i * $spacing_base;
+	}
+	.my-#{$i} {
+		margin-top: $i * $spacing_base;
+		margin-bottom: $i * $spacing_base;
+	}
+	.mx-#{$i} {
+		margin-left: $i * $spacing_base;
+		margin-right: $i * $spacing_base;
+	}
 	.p-#{$i} {
 		padding: $i * $spacing_base;
 	}
