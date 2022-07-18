@@ -35,6 +35,10 @@ const EntrySchema = new Schema({
 		type: FileSchema,
 		required: false,
 	},
+	belongsTo: {
+		type: Schema.Types.ObjectId,
+		ref: 'User',
+	},
 });
 
 module.exports = mongoose.model('entry', EntrySchema);

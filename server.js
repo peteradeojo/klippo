@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const debug = require('debug')('app:server');
 const fileUpload = require('express-fileupload');
+const passport = require('passport');
 
 const app = express();
 
@@ -40,8 +41,12 @@ app.use(
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+require('./config/passport')(passport);
+app.use(passport.initialize());
+
 app.use('/', require('./routes/index.js')());
-app.use('/api', require('./routes/api.js')());
+app.use('/v1', require('./routes/v1.js')());
+app.use('/auth', require('./routes/auth.js')());
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => debug(`Server running on port ${PORT}`));
