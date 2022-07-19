@@ -3,6 +3,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const debug = require('debug')('app:auth');
 
 const router = Router();
 
@@ -17,17 +18,15 @@ module.exports = () => {
 
 	router.get(
 		'/google/callback',
-		passport.authenticate('google', {
-			successRedirect: '/',
-			failureRedirect: '/login',
-		})
+		passport.authenticate('google', (err, user) => {})
 	);
 
 	router.post('/login', async (req, res) => {
 		const { email, password } = req.body;
 
 		try {
-			const user = await User.findOne({ email });
+			const user = await User.findOne({ email: email });
+			debug(user);
 
 			if (!user) {
 				return res.status(403).json({ error: 'Unauthorized' });
@@ -49,6 +48,7 @@ module.exports = () => {
 
 	router.post('/register', async (req, res) => {
 		const { email, password, name } = req.body;
+		debug(req.body);
 		if (!email || !password || !name) {
 			return res
 				.status(401)

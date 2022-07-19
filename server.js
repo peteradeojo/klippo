@@ -29,8 +29,8 @@ app.set('view engine', 'pug');
 
 app.disable('x-powered-by');
 
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(
 	fileUpload({
 		limits: { fileSize: 20 * 1000 * 1000 },
@@ -46,6 +46,7 @@ app.use(passport.initialize());
 
 app.use('/', require('./routes/index.js')());
 app.use('/v1', require('./routes/v1.js')());
+app.use('/api', require('./routes/api.js')());
 app.use('/auth', require('./routes/auth.js')());
 
 const PORT = process.env.PORT || 5000;

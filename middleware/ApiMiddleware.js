@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 const debug = require('debug')('app:api');
 
 const parseBearer = (string) => {
@@ -6,10 +7,9 @@ const parseBearer = (string) => {
 };
 
 module.exports = {
-
 	validateApiToken: function (req, res, next) {
 		const { authorization } = req.headers;
-		const token = parseBearer(authorization);
+		const token = parseBearer(authorization ?? '');
 
 		if (!token) {
 			return res.status(401).json({ message: 'Unauthorized' });
@@ -18,8 +18,16 @@ module.exports = {
 		if (!decoded) {
 			return res.status(401).json({ message: 'Unauthorized' });
 		}
-		req.user = decoded;
-		next();
+
+		User.findById(decoded.id, '-password')
+			.then((user) => {
+				req.user = user;
+				return next();
+			})
+			.catch((err) => {
+				return res.redirect('/');
+			});
+		// next();
 	},
 
 	generateAccessToken: (userId) => {
