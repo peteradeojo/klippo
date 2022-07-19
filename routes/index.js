@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 module.exports = () => {
 	router.get('/', (req, res) => {
-		res.redirect(process.env.SPA_URL);
+		res.redirect(process.env.SPA_URL ?? '/');
 	});
 
 	router.get('/login', (req, res) => {
