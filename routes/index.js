@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 module.exports = () => {
 	router.get('/', (req, res) => {
-		res.render('home');
+		res.redirect(process.env.SPA_URL);
 	});
 
 	router.get('/login', (req, res) => {
@@ -12,6 +12,6 @@ module.exports = () => {
 	router.get('/register', (req, res) => {
 		return res.render('register');
 	});
-	
+
 	return router;
 };

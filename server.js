@@ -25,8 +25,6 @@ if (app.get('env') !== 'production') {
 	}
 })();
 
-app.set('view engine', 'pug');
-
 app.disable('x-powered-by');
 
 app.use(express.json());
