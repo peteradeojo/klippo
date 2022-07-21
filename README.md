@@ -1,17 +1,44 @@
-# Klippo Online Clipboard
+# Klippo Online Clipboard API
 
-## Description
+## Submit Entry
 
-A simple online clipboard that takes user supplied input and stores in a database to be retrieved with a random code. #100DaysOfCode
+```js
+// Request
+Endpoint: '/'
+Method: POST
+Body: {
+    text: string,
+    file: File | null
+}
+```
 
-Check it out at [Klippo](https://klippo.herokuapp.com)
+The body of the request could be JSON or FormData. FormData would be suitable in cases of uploading a media file.
 
-Created with
+```js
+// Response
+Status: 200
+Body: {
+    code: '###' // code to share,
+    file: {
+        link: 'link to the file',
+        title: "string"
+    }
+}
+```
 
-- ExpressJs
-- MongoDB Cloud
-- Heroku
-- [random-js](https://npmjs.com/random-js)
+## Retrieve Entry
 
-## Update
-You can now share media files
+```js
+// Request
+Endpoint: '/:code'
+Method: GET
+
+// Response
+Status: 200
+Body: {
+    text: 'the text corresponding to the code',
+    file: {
+        'included if a file was present'
+    }
+}
+```

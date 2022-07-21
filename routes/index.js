@@ -1,17 +1,15 @@
 const router = require('express').Router();
 
+const EntryController = require('../controllers/EntryController');
+
 module.exports = () => {
 	router.get('/', (req, res) => {
 		res.redirect(process.env.SPA_URL ?? '/');
 	});
 
-	router.get('/login', (req, res) => {
-		return res.render('login');
-	});
+	router.post('/', EntryController.createEntry); // create a new entry
 
-	router.get('/register', (req, res) => {
-		return res.render('register');
-	});
+	router.get('/:code', EntryController.getEntry);
 
 	return router;
 };

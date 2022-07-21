@@ -10,9 +10,5 @@ module.exports = () => {
 	router.get('/', validateApiToken, EntryController.getAllEntries);
 	router.get('/profile', validateApiToken, UserController.getProfile);
 
-	router.post('/', EntryController.createEntry); // create a new entry
-
-	router.get('/:code', EntryController.getEntry);
-
 	return router;
 };
