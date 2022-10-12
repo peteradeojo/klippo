@@ -29,7 +29,7 @@ module.exports = () => {
 			debug(user);
 
 			if (!user) {
-				return res.status(403).json({ error: 'Unauthorized' });
+				return res.status(403).json({ error: 'User not authenticated with provided credentials!' });
 			}
 
 			const token = jwt.sign(
@@ -81,7 +81,7 @@ module.exports = () => {
 
 			return res.json({
 				status: 'success',
-				message: 'Registration successful. Please login',
+				message: 'Registration successful. Please login to access required data',
 				data: token,
 			});
 		} catch (err) {
