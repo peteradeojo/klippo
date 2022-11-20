@@ -1,0 +1,59 @@
+@for $i from 1 through 5 {
+	.m-#{$i} {
+		margin: 1rem * $i;
+	}
+	.mt-#{$i} {
+		margin-top: 1rem * $i;
+	}
+	.mr-#{$i} {
+		margin-right: 1rem * $i;
+	}
+	.mb-#{$i} {
+		margin-bottom: 1rem * $i;
+	}
+	.ml-#{$i} {
+		margin-left: 1rem * $i;
+	}
+	.my-#{$i} {
+		margin-top: 1rem * $i;
+		margin-bottom: 1rem * $i;
+	}
+	.mx-#{$i} {
+		margin-right: 1rem * $i;
+		margin-left: 1rem * $i;
+	}
+}
+
+@for $i from 1 through 5 {
+	.p-#{$i} {
+		padding: 1rem * $i;
+	}
+	.pt-#{$i} {
+		padding-top: 1rem * $i;
+	}
+	.pr-#{$i} {
+		padding-right: 1rem * $i;
+	}
+	.pb-#{$i} {
+		padding-bottom: 1rem * $i;
+	}
+	.pl-#{$i} {
+		padding-left: 1rem * $i;
+	}
+	.py-#{$i} {
+		padding-top: 1rem * $i;
+		padding-bottom: 1rem * $i;
+	}
+	.px-#{$i} {
+		padding-right: 1rem * $i;
+		padding-left: 1rem * $i;
+	}
+}
+
+.flex {
+	display: flex;
+	align-items: stretch;
+	// align-content: center;
+	justify-items: space-between;
+	justify-content: space-between;
+}

@@ -1,0 +1,35 @@
+extends layout
+
+block content 
+  div#input-area.mt-2.mt-md-5
+    form#input-form
+      div.mb-1
+        label(for="input-title") 
+          span Enter your Clip Title here
+          input(type="text" name="input-title")#input-title.form-control
+
+      div.mb-1
+        label(for="input-textarea") 
+          span Enter your content 
+          textarea(name="input-content")#input-textarea.form-control
+      
+      div
+        button(type="submit").form-control Submit
+  
+  div#search-area.mt-2.mt-md-5
+    form#search-form
+      label(for="search-title")
+        span Enter your Clip Code here
+      .flex
+        input(type="text" name="search-input")#search-input.form-control
+        button(type="submit").form-control Submit
+
+  div#output-area.mt-4.mt-md-5
+    div#output-title
+      h3.title
+    div#output-content
+      p.code
+      p.content
+
+block scripts
+  script(src="/js/index.js" defer)
