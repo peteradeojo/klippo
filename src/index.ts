@@ -32,6 +32,7 @@ app.use(
 );
 
 app.use('/js', express.static(path.resolve(__dirname, '../public/dist/js')));
+app.use('/img', express.static(path.resolve(__dirname, '../public/img/')));
 app.use('/css', express.static(path.resolve(__dirname, '../public/dist/css')));
 
 (async () => {

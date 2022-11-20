@@ -23,7 +23,6 @@ body {
 	padding: 24px;
 }
 
-// #input-form {
 label {
 	span {
 		display: block;
@@ -50,4 +49,15 @@ textarea.form-control {
 	resize: vertical;
 	max-height: 200px;
 }
-// }
+
+img {
+	width: 100%;
+	padding: 5px;
+	background-color: #fff;
+	position: absolute;
+	transform: rotateZ(-10deg);
+	top: 5px;
+	& {
+		position: relative;
+	}
+}
