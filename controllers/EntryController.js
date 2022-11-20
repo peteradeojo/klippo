@@ -36,7 +36,6 @@ const EntryController = {
 			// 	projection += '-file.link';
 			// }
 
-			// debug(projection);
 			const { code } = req.params;
 			// const entry = await Entry.findOne({ code }, projection);
 
@@ -46,12 +45,14 @@ const EntryController = {
 			}
 
 			if (!req.user) {
-				entry.file.link = undefined;
+				if (entry.file) {
+					entry.file.link = undefined;
+				}
 			}
 
 			return res.json(entry);
 		} catch (error) {
-			return res.status(500).send(error);
+			return res.status(500).send(error.message);
 		}
 	},
 
