@@ -10,7 +10,7 @@ const debug = Debug('app:auth-controller');
 const AuthController = {
 	// Login a user
 	login: (req: Request, res: Response) => {
-		passport.authenticate('local', (err, user, info) => {
+		passport.authenticate('local', (err: any, user: any, info: any) => {
 			if (err || !user) {
 				return res.status(400).json({
 					message: info
