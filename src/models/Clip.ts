@@ -11,30 +11,35 @@ export interface IClip {
 	createdAt: Date;
 }
 
-const clipSchema = new Schema<IClip>({
-	content: {
-		type: String,
-		required: true,
+const clipSchema = new Schema<IClip>(
+	{
+		content: {
+			type: String,
+			required: true,
+		},
+		title: {
+			type: String,
+			required: true,
+		},
+		user_id: {
+			type: Schema.Types.ObjectId,
+			ref: 'User',
+		},
+		fileLink: {
+			type: String,
+		},
+		accessCode: {
+			type: String,
+			required: true,
+		},
+		createdAt: {
+			type: Date,
+			default: Date.now,
+		},
 	},
-	title: {
-		type: String,
-		required: true,
-	},
-	user_id: {
-		type: Schema.Types.ObjectId,
-		ref: 'User',
-	},
-	fileLink: {
-		type: String,
-	},
-	accessCode: {
-		type: String,
-		required: true,
-	},
-	createdAt: {
-		type: Date,
-		default: Date.now,
-	},
-});
+	{
+		timestamps: true,
+	}
+);
 
 export default mongoose.model<IClip>('Clip', clipSchema);

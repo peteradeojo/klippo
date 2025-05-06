@@ -14,20 +14,25 @@ export type AuthenticatedUser = IUser & Document<IUser>;
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema<IUser>({
-	email: {
-		type: String,
-		required: true,
-		unique: true,
-		length: 40,
+const userSchema = new Schema<IUser>(
+	{
+		email: {
+			type: String,
+			required: true,
+			unique: true,
+			length: 40,
+		},
+		passwordHash: {
+			type: String,
+			required: true,
+		},
+		firstName: String,
+		lastName: String,
 	},
-	passwordHash: {
-		type: String,
-		required: true,
-	},
-	firstName: String,
-	lastName: String,
-});
+	{
+		timestamps: true,
+	}
+);
 
 userSchema.methods.setPasswordHash = function (password: string): void {
 	const hash = hashSync(

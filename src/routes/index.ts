@@ -15,7 +15,12 @@ export default function Router() {
 		if (code) {
 			const clip = await Clip.findOne({ accessCode: code });
 			if (clip) {
-				return res.json({ data: clip });
+				return res.json({
+					title: clip.title,
+					content: clip.content,
+					createdAt: clip.createdAt,
+					code: clip.accessCode,
+				});
 			}
 
 			return res.status(404).json({ error: 'Clip not found' });
